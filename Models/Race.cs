@@ -6,7 +6,7 @@ namespace lotr.Models
 
     public string RaceName { get; set; }
 
-    public string PrimaryLanguage { get; set; }
+    public string NativeLanguage { get; set; }
 
     public bool IsImmortal { get; set; }
   }

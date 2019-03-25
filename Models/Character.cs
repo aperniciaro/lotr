@@ -12,6 +12,6 @@ namespace lotr.Models
 
     public string Residence { get; set; }
 
-    public bool HasWieldedRing { get; set; }
+    public bool HasWieldedOneRing { get; set; }
   }
 }
