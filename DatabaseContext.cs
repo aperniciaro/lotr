@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using lotr.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -45,5 +46,6 @@ namespace lotr
     }
 
     public DbSet<Character> Characters { get; set; }
+    public DbSet<Race> Races { get; set; }
   }
 }
