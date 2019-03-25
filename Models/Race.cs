@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace lotr.Models
 {
   public class Race
@@ -9,5 +11,7 @@ namespace lotr.Models
     public string NativeLanguage { get; set; }
 
     public bool IsImmortal { get; set; }
+
+    public List<Character> Characters { get; set; } = new List<Character>();
   }
 }
