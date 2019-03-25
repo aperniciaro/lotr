@@ -14,7 +14,7 @@ namespace lotr.Models
 
     public bool HasWieldedOneRing { get; set; }
 
-    public int RaceId { get; set; }
+    public int? RaceId { get; set; }
 
     public Race Race { get; set; }
   }
