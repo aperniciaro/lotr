@@ -53,6 +53,7 @@ namespace lotr.Controllers
       character.Profession = newCharacterData.Profession;
       character.Residence = newCharacterData.Residence;
       character.HasWieldedOneRing = newCharacterData.HasWieldedOneRing;
+      character.RaceId = newCharacterData.RaceId;
       db.SaveChanges();
       return character;
     }
