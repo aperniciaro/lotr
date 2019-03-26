@@ -64,5 +64,14 @@ namespace lotr.Controllers
       db.SaveChanges();
       return Ok();
     }
+
+    [HttpDelete("name/{name}")]
+    public ActionResult DeleteRaceByName(string name)
+    {
+      var race = db.Races.FirstOrDefault(r => r.Name.ToLower() == name.ToLower());
+      db.Races.Remove(race);
+      db.SaveChanges();
+      return Ok();
+    }
   }
 }
