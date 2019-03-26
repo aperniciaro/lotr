@@ -32,13 +32,6 @@ namespace lotr.Controllers
       return character;
     }
 
-    [HttpGet("name/{name}")]
-    public ActionResult<Character> GetSingleCharacterByName(string name)
-    {
-      var character = db.Characters.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
-      return character;
-    }
-
     [HttpPost]
     public ActionResult<Character> AddCharacter([FromBody] Character characterToAdd)
     {
@@ -65,6 +58,15 @@ namespace lotr.Controllers
     public ActionResult DeleteCharacter(int id)
     {
       var character = db.Characters.FirstOrDefault(c => c.Id == id);
+      db.Characters.Remove(character);
+      db.SaveChanges();
+      return Ok();
+    }
+
+    [HttpDelete("name/{name}")]
+    public ActionResult DeleteCharacterByName(string name)
+    {
+      var character = db.Characters.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
       db.Characters.Remove(character);
       db.SaveChanges();
       return Ok();
