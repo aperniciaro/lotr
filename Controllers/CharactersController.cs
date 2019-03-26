@@ -18,7 +18,6 @@ namespace lotr.Controllers
       this.db = new DatabaseContext();
     }
 
-    // GET api/values
     [HttpGet]
     public ActionResult<IList<Character>> GetAllCharacters()
     {
@@ -26,7 +25,6 @@ namespace lotr.Controllers
       return results;
     }
 
-    // GET api/values/5
     [HttpGet("{id}")]
     public ActionResult<Character> GetSingleCharacter(int id)
     {
@@ -34,7 +32,13 @@ namespace lotr.Controllers
       return character;
     }
 
-    // POST api/values
+    [HttpGet("name/{name}")]
+    public ActionResult<Character> GetSingleCharacterByName(string name)
+    {
+      var character = db.Characters.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
+      return character;
+    }
+
     [HttpPost]
     public ActionResult<Character> AddCharacter([FromBody] Character characterToAdd)
     {
@@ -43,7 +47,6 @@ namespace lotr.Controllers
       return characterToAdd;
     }
 
-    // PUT api/values/5
     [HttpPut("{id}")]
     public ActionResult<Character> UpdateCharacter(int id, [FromBody] Character newCharacterData)
     {
@@ -58,7 +61,6 @@ namespace lotr.Controllers
       return character;
     }
 
-    // DELETE api/values/5
     [HttpDelete("{id}")]
     public ActionResult DeleteCharacter(int id)
     {
