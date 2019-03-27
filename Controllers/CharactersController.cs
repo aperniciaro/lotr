@@ -54,6 +54,20 @@ namespace lotr.Controllers
       return character;
     }
 
+    [HttpPut("name/{name}")]
+    public ActionResult<Character> UpdateCharacterByName(string name, [FromBody] Character newCharacterData)
+    {
+      var character = db.Characters.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
+      character.Name = newCharacterData.Name;
+      character.WeaponOfChoice = newCharacterData.WeaponOfChoice;
+      character.Profession = newCharacterData.Profession;
+      character.Residence = newCharacterData.Residence;
+      character.HasWieldedOneRing = newCharacterData.HasWieldedOneRing;
+      character.RaceId = newCharacterData.RaceId;
+      db.SaveChanges();
+      return character;
+    }
+
     [HttpDelete("{id}")]
     public ActionResult DeleteCharacter(int id)
     {

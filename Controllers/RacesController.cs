@@ -18,7 +18,6 @@ namespace lotr.Controllers
       this.db = new DatabaseContext();
     }
 
-    // GET api/values
     [HttpGet]
     public ActionResult<IList<Race>> GetAllRaces()
     {
@@ -26,7 +25,6 @@ namespace lotr.Controllers
       return results;
     }
 
-    // GET api/values/5
     [HttpGet("{id}")]
     public ActionResult<Race> GetSingleRace(int id)
     {
@@ -34,7 +32,6 @@ namespace lotr.Controllers
       return race;
     }
 
-    // POST api/values
     [HttpPost]
     public ActionResult<Race> AddRace([FromBody] Race raceToAdd)
     {
@@ -43,7 +40,6 @@ namespace lotr.Controllers
       return raceToAdd;
     }
 
-    // PUT api/values/5
     [HttpPut("{id}")]
     public ActionResult<Race> UpdateRace(int id, [FromBody] Race newRaceData)
     {
@@ -55,7 +51,17 @@ namespace lotr.Controllers
       return race;
     }
 
-    // DELETE api/values/5
+    [HttpPut("name/{name}")]
+    public ActionResult<Race> UpdateRaceByName(string name, [FromBody] Race newRaceData)
+    {
+      var race = db.Races.FirstOrDefault(r => r.RaceName.ToLower() == name.ToLower());
+      race.RaceName = newRaceData.RaceName;
+      race.NativeLanguage = newRaceData.NativeLanguage;
+      race.IsImmortal = newRaceData.IsImmortal;
+      db.SaveChanges();
+      return race;
+    }
+
     [HttpDelete("{id}")]
     public ActionResult DeleteRace(int id)
     {
