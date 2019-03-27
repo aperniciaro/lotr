@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using lotr.Models;
 using lotr.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace lotr.Controllers
 {
@@ -22,7 +23,7 @@ namespace lotr.Controllers
     [HttpGet]
     public ActionResult<IList<CharacterViewModel>> GetAllCharacters()
     {
-      return db.Characters.Select(s => new CharacterViewModel
+      return db.Characters.Include(i => i.Race).Select(s => new CharacterViewModel
       {
         Id = s.Id,
         Name = s.Name,
@@ -31,7 +32,7 @@ namespace lotr.Controllers
         Residence = s.Residence,
         HasWieldedOneRing = s.HasWieldedOneRing,
         RaceId = s.RaceId,
-        RaceName = s.RaceName
+        RaceName = s.Race.RaceName
       }).ToList();
     }
 
