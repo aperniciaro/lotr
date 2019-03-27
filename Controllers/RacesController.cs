@@ -74,7 +74,7 @@ namespace lotr.Controllers
     [HttpDelete("name/{name}")]
     public ActionResult DeleteRaceByName(string name)
     {
-      var race = db.Races.FirstOrDefault(r => r.Name.ToLower() == name.ToLower());
+      var race = db.Races.FirstOrDefault(r => r.RaceName.ToLower() == name.ToLower());
       db.Races.Remove(race);
       db.SaveChanges();
       return Ok();
