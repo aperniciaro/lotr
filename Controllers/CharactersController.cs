@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using lotr.Models;
+using lotr.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lotr.Controllers
@@ -19,10 +20,19 @@ namespace lotr.Controllers
     }
 
     [HttpGet]
-    public ActionResult<IList<Character>> GetAllCharacters()
+    public ActionResult<IList<CharacterViewModel>> GetAllCharacters()
     {
-      var results = db.Characters.ToList();
-      return results;
+      return db.Characters.Select(s => new CharacterViewModel
+      {
+        Id = s.Id,
+        Name = s.Name,
+        WeaponOfChoice = s.WeaponOfChoice,
+        Profession = s.Profession,
+        Residence = s.Residence,
+        HasWieldedOneRing = s.HasWieldedOneRing,
+        RaceId = s.RaceId,
+        RaceName = s.RaceName
+      }).ToList();
     }
 
     [HttpGet("{id}")]

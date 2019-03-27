@@ -1,6 +1,6 @@
-namespace lotr.Models
+namespace lotr.ViewModels
 {
-  public class Character
+  public class CharacterViewModel
   {
     public int Id { get; set; }
 
@@ -17,7 +17,5 @@ namespace lotr.Models
     public int? RaceId { get; set; }
 
     public string RaceName { get; set; }
-
-    public Race Race { get; set; }
   }
 }
